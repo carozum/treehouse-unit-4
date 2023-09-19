@@ -44,3 +44,28 @@ if __name__ == "__main__":
         User(name='Katherine', fullname='Katherine Johnson', nickname='')]
     session.add_all(new_users)
     session.commit()
+
+    # modify an entry
+    astrid_user = User(name="astrad", fullname="zum", nickname="kaaaaaki")
+    session.add(astrid_user)
+    print(session.new)
+
+    # after add but before commit
+    astrid_user.name = "astrid"
+    print(session.new)
+
+    # change after commit
+    session.commit()
+    print(session.new)
+    astrid_user.nickname = 'doucette'
+    print(session.new)
+    print(session.dirty)
+    session.commit()
+
+    # session.delete(caro_user)
+    # session.commit()
+
+    # query all
+    all_users = session.query(User)
+    for user in all_users:
+        print(user)
